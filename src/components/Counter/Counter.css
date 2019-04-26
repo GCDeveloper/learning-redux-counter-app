@@ -1,0 +1,27 @@
+.counters {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+}
+.counter {
+  text-align: center;
+}
+.counter-contents {
+  margin: 0.5em auto;
+  padding: 0.5em;
+  background-color: #f5f5f5;
+  display: inline-block;
+  border-radius: 4px;
+}
+.counter-count {
+  min-width: 64px;
+  display: inline-block;
+}
+/* !important because material UI likes to override every class you give */
+.btn-remove-counter {
+  position: absolute !important;
+  margin-top: 0.5em !important;
+}
+.btn-create-counter {
+  margin: 0 auto !important;
+}
