@@ -2,8 +2,8 @@ import React from 'react';
 import Counter from './Counter';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { createCounter, deleteCounter } from '../../redux/actions';
-const Counters = ({createCounter, deleteCounter, counters}) => {
+import { createCounter, deleteCounter, setRandomColourDelayed } from '../../redux/actions';
+const Counters = ({createCounter, deleteCounter, counters, setRandomColourDelayed}) => {
   return (
     <div className="counters">
       {
@@ -26,6 +26,33 @@ const Counters = ({createCounter, deleteCounter, counters}) => {
         add_circle
         </i>
       </Button>
+
+      <Button onClick={()=>{
+        Object.entries(counters).forEach(([id, {count}]) => {
+          setRandomColourDelayed(id, count, "takeLatest");
+        });
+        
+      }}
+        className="btn-create-counter">
+        take latest
+        <i className="material-icons">
+        color_lens
+        </i>
+      </Button>
+
+      <Button onClick={()=>{
+        Object.entries(counters).forEach(([id, {count}]) => {
+          setRandomColourDelayed(id, count, "takeEvery");
+        });
+        
+      }}
+        className="btn-create-counter">
+        take every
+        <i className="material-icons">
+        color_lens
+        </i>
+      </Button>
+      
       
     </div>
   );
@@ -37,6 +64,7 @@ const mapStateToProps = ({ counters }) => {
 }
 const mapDispatchToProps = {
   createCounter,
-  deleteCounter
+  deleteCounter,
+  setRandomColourDelayed
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Counters);
